@@ -1,3 +1,15 @@
-.item {
-    display: block;
+.link {
+    display: flex;
+    text-decoration: none;
+    column-gap: 10px;
+    align-items: center;
+    height: 30px;
 }
+.navLink {
+    font-size: 17px;
+    color: rgb(209, 209, 209);
+}
+// .icon {
+//     width: 20px;
+//     height: 2
+// }

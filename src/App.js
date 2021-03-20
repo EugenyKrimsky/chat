@@ -1,23 +1,56 @@
-import React from 'react'
+import React, { useState }  from 'react'
 import c from './App.module.scss';
 import Aside from './components/aside/Aside';
-import { BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { Route } from 'react-router-dom'
-import CommunityqQA from './components/sections/community-qa/CommunityqQA';
-import MyQuestions from './components/sections/my-questions/MyQuestions';
-import Messanger from './components/sections/messanger/Messanger';
-import Faq from './components/sections/faq/Faq';
+import Section from './components/sections/Section';
 
-function App(props) {
+const App = () => {
+  const [sections, setSection] = useState([
+      {
+          link: 'myquestion',
+          tittle: 'My Qestion',
+      },
+      {
+          link: 'messanger',
+          tittle: 'Messanger',
+      },
+      {
+          link: 'communityqa',
+          tittle: 'Community QA',
+      },
+      {
+          link: 'faq',
+          tittle: 'FAQ',
+      },
+  ])
+
+  const [isPressesBtn, setIsPresesBtn] = useState(false);
+
+  function addSection() {
+    setIsPresesBtn(true);
+  }
+
+  function updateSections(newSection) {
+    setSection([...sections, newSection]);
+    setIsPresesBtn(false);
+  }
+
   return (
     <BrowserRouter>
       <div className={c.app}>
-        <Aside links={props.state.links}/> 
+        <Aside 
+          links={sections} 
+          addSection={addSection} 
+          isPressedBtn={isPressesBtn} 
+          setSection={setSection} 
+          updateSections={updateSections}
+        /> 
         <div>
-            <Route path='/my-question' render={ () => <MyQuestions />}/>
-            <Route path='/messanger' render={ () => <Messanger />} />
-            <Route path='/community-qa' render={ () => <CommunityqQA />} />
-            <Route path='/faq' render={ () => <Faq />} />
+          {sections.map(section => 
+            <Route path={`/${section.link}`} render={ () => 
+              <Section tittle={section.tittle} />} 
+            />)}         
         </div>
       </div>
     </BrowserRouter>

@@ -6,8 +6,8 @@ const Info = () => {
         <div className={c.info}>
             <img className={c.ava} src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Pic-vk-allaboutme-ava-2.jpg" alt="ava"/>
             <div>
-                <p>David Hill</p>
-                <p>online</p>
+                <h2 className={c.name}>David Hill</h2>
+                <h4 className={c.status}>online</h4>
             </div>
         </div>
     )

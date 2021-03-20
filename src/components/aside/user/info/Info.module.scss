@@ -1,7 +1,19 @@
 .info {
     display: flex;
+    column-gap: 10px;
 }
 .ava {
     width: 50px;
     height: 50px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+.name {
+    font-size: 17px;
+}
+.status {
+    color: rgb(78, 107, 114);
 }
