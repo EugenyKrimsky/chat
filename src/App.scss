@@ -4,7 +4,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: grid;
-  grid-template: 2fr / 400px 3fr;
+  grid-template-columns: 400px 1fr;
+  min-height: 100vh;
 }
-
+.tittle {
+  font-size: 17px;
+}
+.status {
+  color: rgb(78, 107, 114);
+}
 

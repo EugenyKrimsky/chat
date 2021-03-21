@@ -8,8 +8,8 @@ const Messages = (props) => {
 
     return (
         <div className={c.messages}>
-            <h2 className={c.name}>MESSAGES</h2>
-            <h4 className={c.status}>history</h4>
+            <h2 className="tittle">MESSAGES</h2>
+            <h4 className="status">history</h4>
             <div className={c.links}>
                 {items}
             </div>

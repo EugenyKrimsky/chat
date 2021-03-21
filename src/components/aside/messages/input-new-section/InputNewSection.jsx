@@ -5,6 +5,7 @@ const InputNewSection = (props) => {
         props.updateSections({
             link: newSectionTittle.current.value.toLowerCase(),
             tittle: newSectionTittle.current.value,
+            messages: []
         })
     }
     
