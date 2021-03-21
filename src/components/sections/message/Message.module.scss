@@ -1,4 +1,28 @@
 .message {
     padding: 10px;
     background: rgb(255, 255, 255);
+    height: 100px;
+    display: flex;
+    column-gap: 10px;
+    .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .date {
+            color:slategray;
+        }
+    }
+}
+.number {
+    background:  rgb(62, 184, 153);
+    width: 40px;
+    color:rgb(255, 255, 255);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

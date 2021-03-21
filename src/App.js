@@ -12,10 +12,12 @@ const App = () => {
         tittle: 'My Qestions',
         messages: [
           {
-            text: 'question 1'
+            text: 'question 1',
+            date: `20:10 · 1.3`
           },
           {
-            text: 'question 2'
+            text: 'question 2',
+            date: `20:10 · 1.3`
           },
         ],
         newTextMessage: '',
@@ -25,10 +27,12 @@ const App = () => {
         tittle: 'Messanger',
         messages: [
           {
-            text: 'message 1'
+            text: 'message 1',
+            date: `20:10 · 1.3`
           },
           {
-            text: 'message 2'
+            text: 'message 2',
+            date: `20:10 · 1.3`
           },
         ],
         newTextMessage: ''
@@ -38,10 +42,12 @@ const App = () => {
         tittle: 'Community QA',
         messages: [
           {
-            text: 'qa 1'
+            text: 'qa 1',
+            date: `20:10 · 1.3`
           },
           {
-            text: 'qa 2'
+            text: 'qa 2',
+            date: `20:10 · 1.3`
           },
         ],
         newTextMessage: ''
@@ -51,19 +57,21 @@ const App = () => {
         tittle: 'FAQ',
         messages: [
           {
-            text: 'answer 1'
+            text: 'answer 1',
+            date: `20:10 · 1.3`
           },
           {
-            text: 'answer 2'
+            text: 'answer 2',
+            date: `20:10 · 1.3`
           },
         ],
         newTextMessage: ''
   },
   ]
 
-  let storage = JSON.parse(localStorage.getItem('sections'));
+  const storage = JSON.parse(localStorage.getItem('sections'));
 
-  let [sections, setSection] = useState(storage || state);
+  const [sections, setSection] = useState(storage || state);
 
   function upgradeNewTextMessage(tittle, value) {
     localStorage.clear();
@@ -78,13 +86,18 @@ const App = () => {
     localStorage.setItem('sections', JSON.stringify(sections));
   }
 
-  function addNewMessage(tittle) {
+  function addNewMessage(tittle) {          
     localStorage.clear();
 
     setSection(sections.map(section => {
-      if (section.tittle === tittle) {
-        section.messages.push({ text: section.newTextMessage });
-        section.newTextMessage = '';
+      if (section.newTextMessage) {
+        if (section.tittle === tittle) {
+          section.messages.push({ 
+            text: section.newTextMessage, 
+            date: `${new Date().getHours()}:${new Date().getMinutes()} · ${new Date().getDate()}.${new Date().getMonth() + 1}` 
+          });
+          section.newTextMessage = '';
+        }
       }
       return section
     }))
@@ -99,11 +112,16 @@ const App = () => {
   }
 
   function updateSections(newSection) {
-    localStorage.clear();
-    setSection([...sections, newSection]);
-    setIsPresesBtn(false);
-    
-    localStorage.setItem('sections', JSON.stringify(sections));
+    if (!sections.some(section => section.tittle === newSection.tittle)) {
+      localStorage.clear();
+
+      setSection([...sections, newSection]);
+      setIsPresesBtn(false);
+      
+      localStorage.setItem('sections', JSON.stringify(sections));
+    } else {
+      alert('Section with this name already exsists!');
+    }
   }
 
   return (
@@ -116,18 +134,18 @@ const App = () => {
           setSection={setSection} 
           updateSections={updateSections}
         /> 
-          {sections.map(section => 
-            <Route path={`/${section.link}`} render={() => 
-              <Section 
-                tittle={section.tittle} 
-                messages={section.messages.map(message => message.text)}
-                newTextMessage={section.newTextMessage}
-                upgradeNewTextMessage={upgradeNewTextMessage}
-                addNewMessage={addNewMessage}
-              />} 
-            />
-          )}         
-        </div>
+        {sections.map((section, i) => 
+          <Route key={i} path={`/${section.link}`} render={() => 
+            <Section 
+              tittle={section.tittle} 
+              messages={section.messages}
+              newTextMessage={section.newTextMessage}
+              upgradeNewTextMessage={upgradeNewTextMessage}
+              addNewMessage={addNewMessage}
+            />} 
+          />
+        )}         
+      </div>
     </BrowserRouter>
   );
 }

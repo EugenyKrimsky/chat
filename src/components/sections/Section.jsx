@@ -4,11 +4,6 @@ import NewMessage from './new-message/NewMessage';
 import c from './Section.module.scss'
 
 const Section = (props) => {
-    // function upgradeNewTextMessage()  {
-    //     const text = newTextMessage.current.value;
-    //     props.dispatch(actionCreatorUpgradeNewText('post', text));
-    // }
-
     return (
         <div className={c.section}>
             <div className={c.header}>
@@ -16,7 +11,16 @@ const Section = (props) => {
                 <h4 className={`status ${c.status}`}>All questions</h4>
             </div>
             <div className={c.messages}>
-                {props.messages.map(message => <Message message={message}/>)}
+                {props.messages
+                    .map((message, i) => 
+                        <Message 
+                            key={i}
+                            message={message.text} 
+                            date={message.date}
+                            number={i}
+                        />)
+                    .reverse()
+                }
             </div>
             <NewMessage 
                 tittle={props.tittle}

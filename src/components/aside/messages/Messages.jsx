@@ -4,7 +4,7 @@ import Link from './link/Link'
 import c from './Messages.module.scss'
 
 const Messages = (props) => {
-    const items = props.links.map(item => <Link link={item.link} tittle={item.tittle}/>)
+    const items = props.links.map((item, i) => <Link key={i} link={item.link} tittle={item.tittle}/>)
 
     return (
         <div className={c.messages}>

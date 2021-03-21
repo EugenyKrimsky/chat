@@ -1,4 +1,5 @@
 import React from 'react'
+import c from './InputNewSection.module.scss'
 
 const InputNewSection = (props) => {
     const addSection = () => {
@@ -12,9 +13,9 @@ const InputNewSection = (props) => {
     const newSectionTittle = React.createRef();
 
     return (
-        <div>
-            <input type="text" placeholder="Input new section" ref={newSectionTittle}/>
-            <button onClick={addSection}>Add</button>
+        <div className={c.input_new_sections}>
+            <input className={c.input} type="text" placeholder="Input new section" ref={newSectionTittle}/>
+            <button className={c.btn} onClick={addSection}>Add</button>
         </div>
     )
 }

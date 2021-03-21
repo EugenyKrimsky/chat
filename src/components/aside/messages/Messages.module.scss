@@ -1,5 +1,6 @@
 .messages {
     margin-top: 10px;
+    height: 90%; 
 }
 .name {
     font-size: 17px;
@@ -8,6 +9,7 @@
     margin-bottom: 16px;
 }
 .links {
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     row-gap: 10px;

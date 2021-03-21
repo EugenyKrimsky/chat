@@ -1,15 +1,23 @@
 .link {
     display: flex;
+    padding: 0 10px;
     text-decoration: none;
     column-gap: 10px;
     align-items: center;
-    height: 30px;
+    height: 40px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 .navLink {
     font-size: 17px;
     color: rgb(209, 209, 209);
 }
-// .icon {
-//     width: 20px;
-//     height: 2
-// }
+.link:hover {
+    background: rgb(45, 108, 190);
+}
+.link:focus {
+    background: rgb(45, 108, 190);
+}

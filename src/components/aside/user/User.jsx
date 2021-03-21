@@ -6,7 +6,7 @@ const User = (props) => {
     return (
         <div className={c.user}>
             <Info />
-            <button onClick={props.addSection}>+</button>
+            <button className="btn" onClick={props.addSection}></button>
         </div>
     )
 }
