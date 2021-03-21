@@ -4,71 +4,9 @@ import Aside from './components/aside/Aside';
 import { BrowserRouter } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import Section from './components/sections/Section';
+import state from './state';
 
 const App = () => {
-  const state = [
-    {
-        link: 'myquestions',
-        tittle: 'My Qestions',
-        messages: [
-          {
-            text: 'question 1',
-            date: `20:10 · 1.3`
-          },
-          {
-            text: 'question 2',
-            date: `20:10 · 1.3`
-          },
-        ],
-        newTextMessage: '',
-    },
-    {
-        link: 'messanger',
-        tittle: 'Messanger',
-        messages: [
-          {
-            text: 'message 1',
-            date: `20:10 · 1.3`
-          },
-          {
-            text: 'message 2',
-            date: `20:10 · 1.3`
-          },
-        ],
-        newTextMessage: ''
-    },
-    {
-        link: 'communityqa',
-        tittle: 'Community QA',
-        messages: [
-          {
-            text: 'qa 1',
-            date: `20:10 · 1.3`
-          },
-          {
-            text: 'qa 2',
-            date: `20:10 · 1.3`
-          },
-        ],
-        newTextMessage: ''
-    },
-    {
-        link: 'faq',
-        tittle: 'FAQ',
-        messages: [
-          {
-            text: 'answer 1',
-            date: `20:10 · 1.3`
-          },
-          {
-            text: 'answer 2',
-            date: `20:10 · 1.3`
-          },
-        ],
-        newTextMessage: ''
-  },
-  ]
-
   const storage = JSON.parse(localStorage.getItem('sections'));
 
   const [sections, setSection] = useState(storage || state);
