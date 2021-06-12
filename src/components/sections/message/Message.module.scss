@@ -1,9 +1,10 @@
 .message {
     padding: 10px;
     background: rgb(255, 255, 255);
-    height: 100px;
+    height: 90px;
     display: flex;
     column-gap: 10px;
+    flex-shrink: 0;
     .info {
         display: flex;
         flex-direction: column;
