@@ -1,12 +1,11 @@
 import React, { useState }  from 'react'
-import './App.scss';
+import './ChatPage.scss';
 import Aside from './components/aside/Aside';
-import { BrowserRouter } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import Section from './components/sections/Section';
-import state from './state';
+import state from '../state';
 
-const App = () => {
+const ChatPage = () => {
   const storage = JSON.parse(localStorage.getItem('sections'));
 
   const [sections, setSection] = useState(storage || state);
@@ -63,8 +62,7 @@ const App = () => {
   }
 
   return (
-    <BrowserRouter>
-      <div className="app">
+      <div className="ChatPage">
         <Aside 
           links={sections} 
           addSection={addSection} 
@@ -73,7 +71,7 @@ const App = () => {
           updateSections={updateSections}
         /> 
         {sections.map((section, i) => 
-          <Route key={i} path={`/${section.link}`} render={() => 
+          <Route key={i} path={`/ChatPage/${section.link}`} render={() => 
             <Section 
               tittle={section.tittle} 
               messages={section.messages}
@@ -84,8 +82,7 @@ const App = () => {
           />
         )}         
       </div>
-    </BrowserRouter>
   );
 }
 
-export default App;
+export default ChatPage;
