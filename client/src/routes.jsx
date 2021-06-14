@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import ChatPage from './pages/ChatPage.jsx';
-import AuthPage from './pages/AuthPage.jsx'
+import AuthPage from './pages/components/auth/AuthPage.jsx'
 
 const useRoutes = isAuthenticated => {
     if (isAuthenticated) {
@@ -18,7 +18,7 @@ const useRoutes = isAuthenticated => {
     return (
         <Switch>
             <Route path="/" exact>
-                <div>Auth</div>
+                <AuthPage />
             </Route>
         </Switch>
     )
