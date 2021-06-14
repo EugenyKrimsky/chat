@@ -36,6 +36,7 @@ const ChatPage = () => {
           section.newTextMessage = '';
         }
       }
+
       return section
     }))
 
@@ -70,8 +71,8 @@ const ChatPage = () => {
           setSection={setSection} 
           updateSections={updateSections}
         /> 
-        {sections.map((section, i) => 
-          <Route key={i} path={`/ChatPage/${section.link}`} render={() => 
+        {sections.map((section, i) =>
+          <Route key={i} path={`/${section.link}`} render={() => 
             <Section 
               tittle={section.tittle} 
               messages={section.messages}
