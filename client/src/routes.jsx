@@ -20,6 +20,7 @@ const useRoutes = isAuthenticated => {
             <Route path="/" exact>
                 <AuthPage />
             </Route>
+            <Redirect to="/ChatPage" />
         </Switch>
     )
 
