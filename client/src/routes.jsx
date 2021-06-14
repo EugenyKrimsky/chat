@@ -7,16 +7,15 @@ const useRoutes = isAuthenticated => {
     if (isAuthenticated) {
         return (
             <Switch>
-                <ChatPage />
+                <Route path="/" render={() => <ChatPage />}/>
             </Switch>
         )
     }
 
     return (
         <Switch>
-            <Route path="/AuthPage" exact>
-                <AuthPage />
-            </Route>
+            <Route path="/AuthPage" render={() => <AuthPage />}/>
+            <Redirect to="/AuthPage" />
         </Switch>
     )
 
