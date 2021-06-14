@@ -1,11 +1,13 @@
 import React  from 'react'
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import c from './RegisterPage.module.scss'
 
 const RegisterPage = () => {
     const [form, setForm] = useState({
         email: '',
-        password: ''
+        password: '',
+        passwordRepeat: ''
     })
     const changeHandler = event => {
         setForm({ ...form, [event.target.name]: event.target.value })
@@ -36,7 +38,7 @@ const RegisterPage = () => {
                     />
                 </div>
                 <div className={c.inputBlock}>
-                    <label className={c.label} htmlFor="password">password:</label>
+                    <label className={c.label} htmlFor="password">repeat password:</label>
                     <input
                         className={c.authInput}
                         type="password"
@@ -44,8 +46,8 @@ const RegisterPage = () => {
                         onChange={changeHandler}
                     />
                 </div>
-                <button className={c.authButton} onClick={submitClick}>Sign in</button>
-                <p className={c.signUpLink}>Don't have an account? Sign up</p>
+                <button className={c.authButton} onClick={submitClick}>Sign up</button>
+                <p className={c.signP}>Have an account? <NavLink to='/login' className={c.link}>Log in</NavLink></p>
             </form>
         </div>   
     )

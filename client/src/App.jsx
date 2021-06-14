@@ -7,7 +7,7 @@ import useRoutes from './routes';
 const App = () => {
     const {token, login, logout, userId} = useAuth();
     // const isAuthenticated = Boolean(token);
-    const routes = useRoutes(true); // передавать isAuthenticated, когда будет готова регистрация
+    const routes = useRoutes(false); // передавать isAuthenticated, когда будет готова регистрация
 
     return (
         // <AuthContext.Provider value={{

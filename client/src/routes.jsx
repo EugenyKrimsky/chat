@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import ChatPage from './pages/ChatPage.jsx';
 import AuthPage from './pages/AuthPage.jsx'
+import RegisterPage from './pages/RegisterPage.jsx'
 
 const useRoutes = isAuthenticated => {
     if (isAuthenticated) {
@@ -14,8 +15,9 @@ const useRoutes = isAuthenticated => {
 
     return (
         <Switch>
-            <Route path="/AuthPage" render={() => <AuthPage />}/>
-            <Redirect to="/AuthPage" />
+            <Route path="/login" render={() => <AuthPage />}/>
+            <Route path="/registration" render={() => <RegisterPage />}/>
+            <Redirect to="/login" />
         </Switch>
     )
 

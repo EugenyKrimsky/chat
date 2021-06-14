@@ -1,7 +1,6 @@
 import React  from 'react'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import RegisterPage from './RegisterPage'
 import c from './AuthPage.module.scss'
 
 const AuthPage = () => {
@@ -41,8 +40,8 @@ const AuthPage = () => {
                     <input className={c.authCheckbox} type="checkbox" name="check"/>
                     <label className={c.label} htmlFor="check">remember password</label>
                 </div>
-                <button className={c.authButton} onClick={submitClick}>Sign in</button>
-                <p className={c.signUpLink}>Don't have an account?<NavLink to={'/register'}>sss</NavLink></p>
+                <button className={c.authButton} onClick={submitClick}>Log in</button>
+                <p className={c.signP}>Don't have an account? <NavLink to='/registration' className={c.link}>Sign up</NavLink></p>
             </form>
         </div>   
     )
