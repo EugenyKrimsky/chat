@@ -1,3 +1,4 @@
+import { json } from 'express';
 import {useState, useCallback} from 'react'
 
 const useHttp = () => {
@@ -7,12 +8,16 @@ const useHttp = () => {
     const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
         setLoading(true);
         try {
+            if (body) {
+                body = JSON.stringify(body);
+                header['Content-Type'] = 'application/json';
+            }
             const response = await fetch(url, {
                 method, body, headers
             })
             const data = response.json();
 
-            if (!resonse.ok) {
+            if (!response.ok) {
                 throw new Error(data.message || 'Something went wrong')
             }
 
@@ -26,7 +31,7 @@ const useHttp = () => {
         }
     }, [])
 
-    const clearError = () => setError(null);
+    const clearError = useCallback(() => setError(null), []);
 
     return {loading, request, error, clearError}
 }
