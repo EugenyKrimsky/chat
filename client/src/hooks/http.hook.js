@@ -12,7 +12,7 @@ const useHttp = () => {
             })
             const data = response.json();
 
-            if (!resonse.ok) {
+            if (!response.ok) {
                 throw new Error(data.message || 'Something went wrong')
             }
 
