@@ -21,7 +21,7 @@ const AuthPage = () => {
     }
     return (
         <div className={c.formBlock}>
-            <form className={c.authForm}>
+            <div className={c.authForm}>
                 <h1 className={c.h1}>Chat | Authorization</h1>
                 <div className={c.inputBlock}>
                     <label className={c.label} htmlFor="email">email:</label>
@@ -42,14 +42,14 @@ const AuthPage = () => {
                     />
                 </div>
                 <div>
-                    <input className={c.authCheckbox} type="checkbox" name="check"/>
+                    <input className={c.authCheckbox} type="checkbox" name="check" text="Sign in"/>
                     <label className={c.label} htmlFor="check">remember password</label>
                 </div>
-                <button className={c.authButton} onClick={(e) => {e.preventDefault(); registerHandler()}}>Log in</button>
+                <input type="button" className={c.authButton} onClick={registerHandler}/>
                 <p className={c.signP}>Don't have an account? <NavLink to='/registration' className={c.link}>Sign up</NavLink></p>
-            </form>
+            </div>
         </div>   
     )
-  }
+}
   
-  export default AuthPage;
+export default AuthPage;
