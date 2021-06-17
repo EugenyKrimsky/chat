@@ -1,26 +1,41 @@
 import React  from 'react'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import useHttp from '../hooks/http.hook'
 import c from './RegisterPage.module.scss'
 
 const RegisterPage = () => {
+    const { loading, request, error } = useHttp();
+
     const [form, setForm] = useState({
         email: '',
-        password: '',
-        passwordRepeat: ''
+        password: ''
     })
+
+    const [passwordRepeat, setPasswordRepeat] = useState('');
+
     const changeHandler = event => {
-        setForm({ ...form, [event.target.name]: event.target.value })
+        (event.target.name === 'passwordRepeat') ? 
+            setPasswordRepeat(event.target.value) : 
+            setForm({ ...form, [event.target.name]: event.target.value });;
     }
-    function submitClick(e) {
-        e.preventDefault()
+
+    const registerHandler = async () => {
+        if (form.password === passwordRepeat) {
+            try {
+                const data = await request('/api/auth/register', 'POST', {...form})
+                console.log('Data', data)
+            } catch (e) {}
+        } else {
+            alert('The entered passwords don\'t match')
+        }
     }
     return (
         <div className={c.formBlock}>
-            <form className={c.authForm}>
+            <div className={c.authForm}>
                 <h1 className={c.h1}>Chat | Authorization</h1>
                 <div className={c.inputBlock}>
-                    <label className={c.label} htmlFor="email">email:</label>
+                    <label className={c.label} htmlFor="email">Email:</label>
                     <input 
                         className={c.authInput}
                         type="text"
@@ -29,7 +44,7 @@ const RegisterPage = () => {
                     />
                 </div>
                 <div className={c.inputBlock}>
-                    <label className={c.label} htmlFor="password">password:</label>
+                    <label className={c.label} htmlFor="password">Password:</label>
                     <input
                         className={c.authInput}
                         type="password"
@@ -38,17 +53,17 @@ const RegisterPage = () => {
                     />
                 </div>
                 <div className={c.inputBlock}>
-                    <label className={c.label} htmlFor="password">repeat password:</label>
+                    <label className={c.label} htmlFor="password">Repeat password:</label>
                     <input
                         className={c.authInput}
                         type="password"
-                        name="password"
+                        name="passwordRepeat"
                         onChange={changeHandler}
                     />
                 </div>
-                <button className={c.authButton} onClick={submitClick}>Sign up</button>
+                <input type="button" value="Sign up" className={c.authButton} onClick={registerHandler}/>
                 <p className={c.signP}>Have an account? <NavLink to='/login' className={c.link}>Log in</NavLink></p>
-            </form>
+            </div>
         </div>   
     )
   }
