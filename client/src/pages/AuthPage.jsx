@@ -1,9 +1,11 @@
 import React  from 'react'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import useHttp from '../hooks/http.hook'
 import c from './AuthPage.module.scss'
 
 const AuthPage = () => {
+    const { loading, request, error } = useHttp()
     const [form, setForm] = useState({
         email: '',
         password: ''
@@ -11,8 +13,11 @@ const AuthPage = () => {
     const changeHandler = event => {
         setForm({ ...form, [event.target.name]: event.target.value })
     }
-    function submitClick(e) {
-        e.preventDefault()
+    const registerHandler = async () => {
+        try {
+            const data = await request('/api/auth/register', 'POST', {...form})
+            console.log('Data', data)
+        } catch (e) {}
     }
     return (
         <div className={c.formBlock}>
@@ -40,7 +45,7 @@ const AuthPage = () => {
                     <input className={c.authCheckbox} type="checkbox" name="check"/>
                     <label className={c.label} htmlFor="check">remember password</label>
                 </div>
-                <button className={c.authButton} onClick={submitClick}>Log in</button>
+                <button className={c.authButton} onClick={(e) => {e.preventDefault(); registerHandler()}}>Log in</button>
                 <p className={c.signP}>Don't have an account? <NavLink to='/registration' className={c.link}>Sign up</NavLink></p>
             </form>
         </div>   
