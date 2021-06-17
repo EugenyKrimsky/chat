@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const config = require('config')
-const {check, validationResult} = require('express-validator');
+const {check, validationResult} = require('express-validator')
 const router = Router();
 
 router.post(
@@ -18,7 +18,7 @@ router.post(
             console.log('Body', req.body)
             const errors = validationResult(req);
 
-            if (!errors.isEmpty) {
+            if (!errors.isEmpty()) {
                 return res.status(400).json({
                     errors: errors.array(),
                     message: 'Invalid data'
