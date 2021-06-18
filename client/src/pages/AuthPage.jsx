@@ -35,6 +35,7 @@ const AuthPage = () => {
                         className={c.authInput}
                         type="text"
                         name="email"
+                        //value={value.form.email}
                         onChange={changeHandler}
                     />
                 </div>
@@ -44,6 +45,7 @@ const AuthPage = () => {
                         className={c.authInput}
                         type="password"
                         name="password"
+                        //value={value.form.password}
                         onChange={changeHandler}
                     />
                 </div>
