@@ -33,7 +33,7 @@ const RegisterPage = () => {
     return (
         <div className={c.formBlock}>
             <div className={c.authForm}>
-                <h1 className={c.h1}>Chat | Authorization</h1>
+                <h1 className={c.h1}>Chat | Registration</h1>
                 <div className={c.inputBlock}>
                     <label className={c.label} htmlFor="email">Email:</label>
                     <input 

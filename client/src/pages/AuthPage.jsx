@@ -1,10 +1,13 @@
 import React  from 'react'
+import { useContext } from 'react'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import AuthContext from '../context/AuthContext.js'
 import useHttp from '../hooks/http.hook'
 import c from './AuthPage.module.scss'
 
 const AuthPage = () => {
+    const auth = useContext(AuthContext)
     const { loading, request, error } = useHttp()
     const [form, setForm] = useState({
         email: '',
@@ -13,10 +16,11 @@ const AuthPage = () => {
     const changeHandler = event => {
         setForm({ ...form, [event.target.name]: event.target.value })
     }
-    const registerHandler = async () => {
+    const loginHandler = async () => {
         try {
-            const data = await request('/api/auth/register', 'POST', {...form})
+            const data = await request('/api/auth/login', 'POST', {...form})
             console.log('Data', data)
+            auth.login(data.token, data.userId)
         } catch (e) {}
     }
     return (
@@ -45,7 +49,7 @@ const AuthPage = () => {
                     <input className={c.authCheckbox} type="checkbox" name="check" text="Sign in"/>
                     <label className={c.label} htmlFor="check">remember password</label>
                 </div>
-                <input type="button" className={c.authButton} onClick={registerHandler}/>
+                <input type="button" className={c.authButton} onClick={loginHandler} value="Sign in"/>
                 <p className={c.signP}>Don't have an account? <NavLink to='/registration' className={c.link}>Sign up</NavLink></p>
             </div>
         </div>   
