@@ -1,4 +1,4 @@
-## Instruciton to install all dependencies
+## Instruction to install all the dependencies
 
 To install all the deps for backend in the project directiory you need to:
 
