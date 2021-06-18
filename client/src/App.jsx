@@ -5,13 +5,13 @@ import useAuth from './hooks/auth.hook';
 import useRoutes from './routes';
 
 const App = () => {
-    const {token, login, logout, userId} = useAuth();
+    const {token, login, logout, userId, userLogin} = useAuth();
     const isAuthenticated = Boolean(token);
     const routes = useRoutes(isAuthenticated); // передавать isAuthenticated, когда будет готова регистрация
 
     return (
         <AuthContext.Provider value={{
-            token, login, logout, userId, isAuthenticated
+            token, login, logout, userId, userLogin, isAuthenticated
         }}>
             <BrowserRouter>
                 {routes}
