@@ -11,8 +11,6 @@ const ChatPage = () => {
   const [sections, setSection] = useState(storage || state);
 
   function upgradeNewTextMessage(tittle, value) {
-    localStorage.clear();
-
     setSection(sections.map(section => {
       if (section.tittle === tittle) {
         section.newTextMessage = value;
@@ -24,8 +22,6 @@ const ChatPage = () => {
   }
 
   function addNewMessage(tittle) {          
-    localStorage.clear();
-
     setSection(sections.map(section => {
       if (section.newTextMessage) {
         if (section.tittle === tittle) {
@@ -51,8 +47,6 @@ const ChatPage = () => {
 
   function updateSections(newSection) {
     if (!sections.some(section => section.tittle === newSection.tittle)) {
-      localStorage.clear();
-
       setSection([...sections, newSection]);
       setIsPresesBtn(false);
       
