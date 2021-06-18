@@ -26,6 +26,7 @@ const RegisterPage = () => {
             try {
                 const data = await request('/api/auth/register', 'POST', {...form})
                 console.log('Data', data)
+                localStorage.setItem("userLogin", data.userLogin)
             } catch (e) {}
         } else {
             alert('The entered passwords don\'t match')

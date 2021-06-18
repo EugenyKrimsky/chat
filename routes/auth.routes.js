@@ -44,7 +44,7 @@ router.post(
 
             await user.save();
 
-            res.status(201).json({message: 'User has created'});
+            res.status(201).json({message: 'User has created', userLogin: login});
 
         } catch(e) {
             res.status(500).json(e);
