@@ -8,6 +8,7 @@ const RegisterPage = () => {
     const { loading, request, error } = useHttp();
 
     const [form, setForm] = useState({
+        login: '',
         email: '',
         password: ''
     })
@@ -17,7 +18,7 @@ const RegisterPage = () => {
     const changeHandler = event => {
         (event.target.name === 'passwordRepeat') ? 
             setPasswordRepeat(event.target.value) : 
-            setForm({ ...form, [event.target.name]: event.target.value });;
+            setForm({ ...form, [event.target.name]: event.target.value });
     }
 
     const registerHandler = async () => {
@@ -34,6 +35,15 @@ const RegisterPage = () => {
         <div className={c.formBlock}>
             <div className={c.authForm}>
                 <h1 className={c.h1}>Chat | Registration</h1>
+                <div className={c.inputBlock}>
+                    <label className={c.label} htmlFor="login">Login:</label>
+                    <input 
+                        className={c.authInput}
+                        type="text"
+                        name="login"
+                        onChange={changeHandler}
+                    />
+                </div>
                 <div className={c.inputBlock}>
                     <label className={c.label} htmlFor="email">Email:</label>
                     <input 

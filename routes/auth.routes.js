@@ -11,6 +11,7 @@ router.post(
     [
         check('email', 'Invalid email').isEmail(),
         check('password', 'Invalid password. Minimal length is 6 symbols').isLength({min: 6}),
+        check('login', 'Invalid login').isString()
     ],
     async(req, res) => {
         try {
@@ -25,23 +26,28 @@ router.post(
                 })
             } 
 
-            const {email, password} = req.body;
+            const {email, password, login} = req.body;
 
-            const candidate = await User.findOne({email});
+            const doesEmailExist = await User.findOne({email});
+            const doesLoginExist = await User.findOne({login});
 
-            if (candidate) {
+            if (doesEmailExist) {
                 return res.status(400).json({message: 'This email already exists'});
             } 
+            
+            if (doesLoginExist) {
+                return res.status(400).json({message: 'This login already exists'});
+            }
 
             const hashedPassword = await bcrypt.hash(password, 12);
-            const user = new User({email, password: hashedPassword});
+            const user = new User({login, email, password: hashedPassword});
 
             await user.save();
 
             res.status(201).json({message: 'User has created'});
 
         } catch(e) {
-            res.status(500).json('error');
+            res.status(500).json(e);
         }
     }
 )
