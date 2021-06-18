@@ -25,7 +25,10 @@ const RegisterPage = () => {
         if (form.password === passwordRepeat) {
             try {
                 const data = await request('/api/auth/register', 'POST', {...form})
-                console.log('Data', data)
+                console.log('Data', data);
+                if (data) {
+                    alert('New user has created');
+                }
                 localStorage.setItem("userLogin", data.userLogin)
             } catch (e) {}
         } else {
