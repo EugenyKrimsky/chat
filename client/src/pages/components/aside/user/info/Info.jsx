@@ -6,7 +6,7 @@ const Info = () => {
         <div className={c.info}>
             <img className={c.ava} src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Pic-vk-allaboutme-ava-2.jpg" alt="ava"/>
             <div>
-                <h2 className="tittle">David Hill</h2>
+                <h2 className="tittle">{localStorage.getItem('userLogin')}</h2>
                 <h4 className="status">online</h4>
             </div>
         </div>
